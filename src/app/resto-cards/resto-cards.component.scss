@@ -1,9 +1,20 @@
 .resto-cards {
-  height: 50px;
-  width:50px;
-  background-color: blueviolet;
+  height: 400px;
+  width:200px;
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   margin: 10px;
   float: left;
+  flex-wrap: wrap;
+}
+.res-logo {
+  // width: 100%;
+  // height: 400px;
+
+}
+.res-card {
+  margin: 5px;
+  padding: 5px;
+//  width: 200px;
 }

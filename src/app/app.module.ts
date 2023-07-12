@@ -7,6 +7,7 @@ import { HeaderComponent } from 'src/header/header.component';
 import { FooterComponent } from 'src/footer/footer.component';
 import { RestoCardsComponent } from './resto-cards/resto-cards.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
 
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     RestoCardsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

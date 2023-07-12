@@ -1,4 +1,4 @@
-<div class="resto-cards" *ngIf="!!data && !!data.length && data.length > 0">
+<!-- <div class="resto-cards" *ngIf="!!data && !!data.length && data.length > 0">
 {{data[0]?.data?.name}}
 </div>
 <div class="resto-cards">
@@ -9,4 +9,27 @@
 </div>
 <div class="resto-cards">
 
-</div>
+</div> -->
+
+<link *ngIf="!!data && !!data.length && data.length > 0" class="res-card">
+
+      <!-- <h3>{{name}}</h3>
+      <h4>{{cuisines.join(", ")}}</h4>
+      <h4>{{avgRating}} stars</h4>
+      <h4>₹{{costForTwo / 100}} FOR TWO</h4>
+      <h4>{{deliveryTime}} minutes</h4> -->
+    <li class="resto-cards"   *ngFor="let item of data;">
+      <h3>{{item.data.name}}</h3>
+      <h4>{{item.data.cuisines.join(", ")}}</h4>
+      <h4>{{item.data.avgRating}} stars</h4>
+      <h4>₹{{item.data.costForTwo / 100}} FOR TWO</h4>
+      <h4>{{item.data.deliveryTime}} minutes</h4>
+      <img (click)="clicked($event, item.data.id)" [routerLink]="['/about']" *ngIf="!!data && !!data.length && data.length > 0 && data[0].data.cloudinaryImageId"
+      className="res-logo"
+      alt="res-logo"
+      src='../../favicon.ico'
+    />
+      </li>
+
+<!-- </div> -->
+
