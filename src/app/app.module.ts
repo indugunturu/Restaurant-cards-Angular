@@ -8,6 +8,11 @@ import { FooterComponent } from 'src/footer/footer.component';
 import { RestoCardsComponent } from './resto-cards/resto-cards.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
+import { NgxsModule } from '@ngxs/store';
+import { UsersComponent } from './users/users.component';
+import { DesignutilityService } from './designutility.service';
+import { GeneralComponent } from './general/general.component';
+import { AppState } from './state/app.state';
 
 @NgModule({
 
@@ -18,13 +23,16 @@ import { AboutComponent } from './about/about.component';
     FooterComponent,
     RestoCardsComponent,
     AboutComponent,
+    UsersComponent,
+    GeneralComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxsModule.forRoot([AppState])
   ],
-  providers: [],
+  providers: [DesignutilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
