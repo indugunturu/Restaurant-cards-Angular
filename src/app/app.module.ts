@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/header/header.component';
@@ -13,6 +12,7 @@ import { UsersComponent } from './users/users.component';
 import { DesignutilityService } from './designutility.service';
 import { GeneralComponent } from './general/general.component';
 import { AppState } from './state/app.state';
+import { RestaurantmeuComponent } from './restaurantmeu/restaurantmeu.component';
 
 @NgModule({
 
@@ -25,6 +25,7 @@ import { AppState } from './state/app.state';
     AboutComponent,
     UsersComponent,
     GeneralComponent,
+    RestaurantmeuComponent,
   ],
   imports: [
     BrowserModule,

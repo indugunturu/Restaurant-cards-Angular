@@ -16,7 +16,7 @@
         <input type="number" class="form-control mb-2" placeholder="Enter Contact No." formControlName="phone">
         <label class="form-label">Website</label>
         <input type="email" class="form-control mb-2" placeholder="Enter website name" formControlName="website">
-        <button type="submit" class="btn btn-primary btn-sm mt-2">Add User</button>
+        <button type="submit" class="btn btn-primary">Add User</button>
       </form>
     </div>
     <div class="col-md-9">
@@ -42,9 +42,9 @@
             <td>{{contents.email}}</td>
             <td>{{contents.phone}}</td>
             <td>{{contents.website}}</td>
-            <td><button class="btn btn-outline-warning btn-sm" (click)="updateUser(contents.id,i)"><i
+            <td><button class="btn btn-primary" type="button" (click)="updateUser(contents.id,i)"><i
                   class="bi bi-pencil-fill"></i></button></td>
-            <td><button class="btn btn-danger btn-sm" (click)="deleteUser(contents.id)"><i
+            <td><button class="btn btn-danger" type="button" (click)="deleteUser(contents.id)"><i
                   class="bi bi-trash-fill"></i></button></td>
           </tr>
         </tbody>

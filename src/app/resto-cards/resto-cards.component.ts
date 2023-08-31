@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CDN_URL, MENU_API } from '../../constants'
 import { ApiService } from './restoservice';
+import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { RestaurantMenu } from '../actions/app.actions';
 @Component({
   selector: 'app-resto-cards',
   templateUrl: './resto-cards.component.html',
@@ -10,7 +13,8 @@ export class RestoCardsComponent {
   y: any;
   data: any;
   imgage: any
-  constructor( private apiService: ApiService) {
+  constructor( private apiService: ApiService, private store: Store,
+    private router: Router) {
     this.fetchData();
   }
   // getValue() {
@@ -28,16 +32,43 @@ export class RestoCardsComponent {
       );
 
       const json = await data.json();
-      this.data = json?.data?.cards[2]?.data?.data?.cards;
-      console.log(CDN_URL + this.data[0].data.cloudinaryImageId);
-      this.imgage = CDN_URL + this.data[0].data.cloudinaryImageId;
+      this.data = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      // const link = !!this.data?.this.data[0]?.info.cta.link;
+      // console.log(CDN_URL + this.data[0].data.cloudinaryImageId);
+      // this.imgage = CDN_URL + this.data[0].data.cloudinaryImageId;
       // // Optional Chaining
       // setListOfRestraunt(json?.data?.cards[2]?.data?.data?.cards);
       // setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+      console.log('imageeeeeeeee', CDN_URL + this.data[0]?.info?.cloudinaryImageId);
     };
 //  };
 clicked(event: any, data: any){
 
 console.log(data);
 }
+filterResults(text: string) {
+  if (!text) {
+    this.data = this.data;
+  }
+  this.data = this.data.filter(
+    (filtered:any) => filtered?.info.name.toLowerCase().includes(text.toLowerCase())
+  );
+}
+fetchResData  = async (id: string) => {
+  const data = await fetch(
+    MENU_API+id
+  );
+  const json = await data.json();
+ this.store.dispatch(new RestaurantMenu(json.data));
+ this.router.navigate(['/restaurants', id]);
+  return json;
+}
+onClicked(event: Event, id: string) {
+  console.log(id);
+
+ const resData = this.fetchResData(id);
+ console.log(resData);
+
+}
+
 }

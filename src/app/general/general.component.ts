@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 import { AddUsers, DeleteUsers, GetUsers, UpdateUsers } from '../actions/app.actions';
 import { AppState } from '../state/app.state';
 
+
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
-  styleUrls: ['./general.component.css']
+  styleUrls: ['./general.component.scss']
 })
 export class GeneralComponent implements OnInit, Extracted {
 
@@ -38,17 +39,17 @@ export class GeneralComponent implements OnInit, Extracted {
 
   addUser() {
     this.store.dispatch(new AddUsers(this.userForm.value));
-    this.userForm.reset();
+    // this.userForm.reset();
   }
 
   updateUser(id:any, i:any) {
 
     const newData = {
       id: id,
-      name: "Siddhesh Thipse",
-      username: "iamsid2399",
-      email: 'siddheshthipse09@gmail.com',
-      phone: '02138-280044',
+      name: "Indumathi Gunturu",
+      username: "Indu",
+      email: 'indugunturu12@gmail.com',
+      phone: '+46-767452731',
       website: 'samplewebsite.com'
     }
 

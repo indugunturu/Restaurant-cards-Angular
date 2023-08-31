@@ -20,3 +20,7 @@ export class DeleteUsers {
   static readonly type = '[Users] Delete';
   constructor(public id: number) { }
 }
+export class RestaurantMenu {
+  static readonly type = '[Restaurant] Menu';
+  constructor(public response: any) { }
+}

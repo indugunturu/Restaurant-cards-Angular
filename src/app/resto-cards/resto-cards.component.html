@@ -11,27 +11,33 @@
 
 </div> -->
 
-<link *ngIf="!!data && !!data.length && data.length > 0" class="res-card">
+<!-- <link *ngIf="!!data && !!data.length && data.length > 0" class="res-card"> -->
 
       <!-- <h3>{{name}}</h3>
       <h4>{{cuisines.join(", ")}}</h4>
       <h4>{{avgRating}} stars</h4>
       <h4>₹{{costForTwo / 100}} FOR TWO</h4>
       <h4>{{deliveryTime}} minutes</h4> -->
-    <li class="resto-cards"   *ngFor="let item of data;">
-      <div (click)="clicked($event, item.data.id)" [routerLink]="['/about']">
-      <h3>{{item.data.name}}</h3>
-      <h4>{{item.data.cuisines.join(", ")}}</h4>
-      <h4>{{item.data.avgRating}} stars</h4>
-      <h4>₹{{item.data.costForTwo / 100}} FOR TWO</h4>
-      <h4>{{item.data.deliveryTime}} minutes</h4>
-      <img   *ngIf="!!data && !!data.length && data.length > 0 && data[0].data.cloudinaryImageId"
-      className="res-logo"
-      alt="res-logo"
-      src='../../favicon.ico'
-    />
-    </div>
-      </li>
+      Search Restaurants:<input type="text" placeholder="Restaurant Name" #filter>
+      <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+      <div >
+    <li  class="resto-cards" *ngFor="let item of data;" (click)="onClicked($event, item.info.id)" >
+      <!-- <div (click)="clicked($event, item.data.id)" [routerLink]="['/about']"> -->
+        <img *ngIf="!!data && !!data.length && data.length > 0"
+        class="res-logo"
+        alt="res-logo"
+        src= "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/{{item.info.cloudinaryImageId}}"
+      />
+      <h6>Name:{{item.info.name}}</h6>
+      <!-- <h4>{{item.info.cuisines.join(", ")}}</h4> -->
+      <h6>Rating:{{item.info.avgRating}} *</h6>
+      <h6>Price:{{item.info.costForTwo}}</h6>
+      <h6>Delivery Time:{{item.info.sla.deliveryTime}} minutes</h6>
 
+
+    <a href="{{item.cta.link}}">Redirect to Restaurant</a>
+    <!-- </div> -->
+      </li>
+    </div>
 <!-- </div> -->
 
