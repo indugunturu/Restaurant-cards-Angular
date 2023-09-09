@@ -22,5 +22,5 @@ export class DeleteUsers {
 }
 export class RestaurantMenu {
   static readonly type = '[Restaurant] Menu';
-  constructor(public response: any) { }
+  constructor(public id: any) { }
 }

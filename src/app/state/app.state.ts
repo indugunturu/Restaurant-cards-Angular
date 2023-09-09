@@ -100,12 +100,16 @@ export class AppState {
     );
   }
   @Action(RestaurantMenu)
-  getRestaurantMenu(ctx: StateContext<RestaurantStateModel>) {
-    const state = ctx.getState();
+  getRestaurantMenu(ctx: StateContext<RestaurantStateModel>,{ id }: RestaurantMenu) {
+    return this._du.getRestaurentMenu(id).pipe(
+      tap((returnData) => {
+        const state = ctx.getState();
 
-    return ctx.setState({
-      ...state,
-      menu: state, //here the data coming from the API will get assigned to the users variable inside the appstate
-    });
+        ctx.setState({
+          ...state,
+          menu: returnData, //here the data coming from the API will get assigned to the users variable inside the appstate
+        });
+      })
+    );
   }
 }

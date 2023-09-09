@@ -1,1 +1,6 @@
-<p>restaurantmeu works!</p>
+<div *ngIf="!!cuisines && cuisines.length > 0">
+  <h1>{{resName}}</h1>
+  <li *ngFor="let cuisine of cuisines">
+    {{cuisine}}
+  </li>
+</div>

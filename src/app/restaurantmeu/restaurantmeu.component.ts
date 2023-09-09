@@ -9,18 +9,24 @@ import { Observable } from 'rxjs';
   templateUrl: './restaurantmeu.component.html',
   styleUrls: ['./restaurantmeu.component.scss'],
 })
-export class RestaurantmeuComponent implements OnInit,AfterViewInit {
-  userInfo: any;
+export class RestaurantmeuComponent implements OnInit {
+  cuisines: any;
+  resName: string = '';
   @Select(AppState.selectResMenuData) menuInfo$: any;
   // @Select(AppState => AppState.selectResMenuData) menuInfo$: Observable<any>;
   constructor(private store: Store) {}
   ngOnInit(): void {
-
-  }
-  ngAfterViewInit(): void {
     this.menuInfo$.subscribe((returnData: any) => {
-      this.userInfo = returnData;
-      console.log(returnData);
+      this.cuisines = returnData?.data?.cards[0]?.card?.card?.info?.cuisines;
+      this.resName = returnData?.data?.cards[0]?.card?.card?.info?.name;
+      console.log(returnData?.data?.cards[0]?.card?.card?.info?.cuisines);
+      const categories =  returnData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+        (c:any) =>
+          c.card?.["card"]?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
+      console.log(categories);
     });
+
   }
 }
