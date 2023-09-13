@@ -13,6 +13,8 @@ import { DesignutilityService } from './designutility.service';
 import { GeneralComponent } from './general/general.component';
 import { AppState } from './state/app.state';
 import { RestaurantmeuComponent } from './restaurantmeu/restaurantmeu.component';
+import { ShimmerComponent } from './shimmer/shimmer.component';
+import { ItemListComponent } from './item-list/item-list.component';
 
 @NgModule({
 
@@ -26,6 +28,8 @@ import { RestaurantmeuComponent } from './restaurantmeu/restaurantmeu.component'
     UsersComponent,
     GeneralComponent,
     RestaurantmeuComponent,
+    ShimmerComponent,
+    ItemListComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,3 +24,7 @@ export class RestaurantMenu {
   static readonly type = '[Restaurant] Menu';
   constructor(public id: any) { }
 }
+export class MenuList {
+  static readonly type = '[MenuList] MenuList';
+  constructor(public menuList: any) { }
+}

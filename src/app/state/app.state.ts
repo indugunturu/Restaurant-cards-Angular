@@ -2,13 +2,16 @@ import { Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { DesignutilityService } from "../designutility.service";
 import { tap } from 'rxjs/operators';
-import { AddUsers, DeleteUsers, GetUsers, RestaurantMenu, UpdateUsers } from "../actions/app.actions";
+import { AddUsers, DeleteUsers, GetUsers, RestaurantMenu, UpdateUsers, MenuList } from "../actions/app.actions";
 
 export class UserStateModel {
     users: any
 }
 export class RestaurantStateModel {
   menu: any
+}
+export class MenuListStateModel {
+  menuList: any
 }
 
 @State<UserStateModel>({
@@ -23,6 +26,12 @@ export class RestaurantStateModel {
     menu: [],
   },
 })
+@State<MenuListStateModel>({
+  name: 'appstate',
+  defaults: {
+    menuList: [],
+  },
+})
 @Injectable()
 export class AppState {
   constructor(private _du: DesignutilityService) {}
@@ -34,6 +43,10 @@ export class AppState {
   @Selector()
   static selectResMenuData(state: RestaurantStateModel) {
     return state.menu;
+  }
+  @Selector()
+  static selectMenuList(state: MenuList) {
+    return state.menuList;
   }
   @Action(GetUsers)
   getDataFromState(ctx: StateContext<UserStateModel>) {
@@ -111,5 +124,12 @@ export class AppState {
         });
       })
     );
+  }
+  @Action(MenuList)
+  getMenuList(ctx: StateContext<MenuListStateModel>, { menuList }: MenuList) {
+    return (ctx.setState({
+      ...ctx.getState,
+      menuList: menuList
+    }))
   }
 }

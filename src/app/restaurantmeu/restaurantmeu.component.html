@@ -1,6 +1,29 @@
+<button [routerLink]="['']">Back</button>
 <div *ngIf="!!cuisines && cuisines.length > 0">
   <h1>{{resName}}</h1>
   <li *ngFor="let cuisine of cuisines">
     {{cuisine}}
   </li>
+</div>
+<div *ngIf="data && data.itemCards.length > 0" className="flex justify-between cursor-pointer">
+  <div *ngFor="let categories of categories" (click)="onMenuClicked($event, categories.card.card.itemCards)">
+    <div>
+      <span className="font-bold text-lg">
+        {{categories.card.card.title}} ({{categories.card.card.itemCards.length}})
+      </span>
+      <span>⬇️</span>
+    </div>
+    <div *ngIf="categories.isExpanded">
+      <li class="list-background" *ngFor="let item of menuLust">
+        <span>{{item.card.info.name}}</span>
+        <span>
+          - ₹
+          {{item.card.info.price
+          ? item.card.info.price / 100
+          : item.card.info.defaultPrice / 100}}
+        </span> <span><button (click)="addItemsToCart(item)">Add</button></span>
+        <p className="text-xs">{{item.card.info.description}}</p>
+      </li>
+    </div>
+  </div>
 </div>

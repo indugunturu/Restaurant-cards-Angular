@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CDN_URL, MENU_API } from '../../constants';
 import { ApiService } from './restoservice';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { RestaurantMenu } from '../actions/app.actions';
+import { ShimmerComponent } from '../shimmer/shimmer.component';
 @Component({
   selector: 'app-resto-cards',
   templateUrl: './resto-cards.component.html',
@@ -13,6 +14,7 @@ export class RestoCardsComponent {
   y: any;
   data: any;
   imgage: any;
+  @ViewChild('filter') inputs: any; // accessing the reference element
   constructor(
     private apiService: ApiService,
     private store: Store,
@@ -77,5 +79,9 @@ export class RestoCardsComponent {
     console.log(id);
     const resData = this.fetchResData(id);
     console.log(resData);
+  }
+  clearFilter() {
+    this.inputs.nativeElement.value = ' ';
+    this.fetchData();
   }
 }

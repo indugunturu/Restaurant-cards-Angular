@@ -13,31 +13,33 @@
 
 <!-- <link *ngIf="!!data && !!data.length && data.length > 0" class="res-card"> -->
 
-      <!-- <h3>{{name}}</h3>
+<!-- <h3>{{name}}</h3>
       <h4>{{cuisines.join(", ")}}</h4>
       <h4>{{avgRating}} stars</h4>
       <h4>₹{{costForTwo / 100}} FOR TWO</h4>
       <h4>{{deliveryTime}} minutes</h4> -->
-      Search Restaurants:<input type="text" placeholder="Restaurant Name" #filter>
-      <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-      <div >
-    <li  class="resto-cards" *ngFor="let item of data;" (click)="onClicked($event, item.info.id)" >
-      <!-- <div (click)="clicked($event, item.data.id)" [routerLink]="['/about']"> -->
-        <img *ngIf="!!data && !!data.length && data.length > 0"
-        class="res-logo"
-        alt="res-logo"
-        src= "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/{{item.info.cloudinaryImageId}}"
-      />
-      <h6>Name:{{item.info.name}}</h6>
-      <!-- <h4>{{item.info.cuisines.join(", ")}}</h4> -->
-      <h6>Rating:{{item.info.avgRating}} *</h6>
-      <h6>Price:{{item.info.costForTwo}}</h6>
-      <h6>Delivery Time:{{item.info.sla.deliveryTime}} minutes</h6>
+      <app-shimmer *ngIf="data === undefined" />
+<div *ngIf="data !== undefined" class="center">
+  Search Restaurants:<input type="text" placeholder="Restaurant Name" #filter>
+  <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+  <button class="primary" type="button" (click)="clearFilter()">Clear</button>
+</div>
+
+
+<div>
+  <li class="resto-cards" *ngFor="let item of data;" (click)="onClicked($event, item.info.id)">
+    <!-- <div (click)="clicked($event, item.data.id)" [routerLink]="['/about']"> -->
+    <img *ngIf="!!data && !!data.length && data.length > 0" class="res-logo" alt="res-logo"
+      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/{{item.info.cloudinaryImageId}}" />
+    <h6>Name:{{item.info.name}}</h6>
+    <!-- <h4>{{item.info.cuisines.join(", ")}}</h4> -->
+    <h6>Rating:{{item.info.avgRating}} *</h6>
+    <h6>Price:{{item.info.costForTwo}}</h6>
+    <h6>Delivery Time:{{item.info.sla.deliveryTime}} minutes</h6>
 
 
     <a href="{{item.cta.link}}">Redirect to Restaurant</a>
     <!-- </div> -->
-      </li>
-    </div>
+  </li>
+</div>
 <!-- </div> -->
-
