@@ -6,7 +6,7 @@
   </li>
 </div>
 <div *ngIf="data && data.itemCards.length > 0" className="flex justify-between cursor-pointer">
-  <div *ngFor="let categories of categories" (click)="onMenuClicked($event, categories.card.card.itemCards)">
+  <div *ngFor="let categories of categories" (click)="onMenuClicked($event, categories.card.card.itemCards, categories.isExpanded = !categories.isExpanded)">
     <div>
       <span className="font-bold text-lg">
         {{categories.card.card.title}} ({{categories.card.card.itemCards.length}})
@@ -15,7 +15,7 @@
     </div>
     <div *ngIf="categories.isExpanded">
       <li class="list-background" *ngFor="let item of menuLust">
-        <span>{{item.card.info.name}}</span>
+<span>{{item.card.info.name}}</span>
         <span>
           - ₹
           {{item.card.info.price

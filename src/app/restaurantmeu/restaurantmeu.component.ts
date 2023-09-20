@@ -43,9 +43,21 @@ export class RestaurantmeuComponent implements OnInit {
           // setShowIndex={() => setShowIndex(index)}
           // dummy={dummy}
         );
+        if (!!this.categories && this.categories.length > 0) {
+          this.categories.forEach((_covenants: any) => {
+            _covenants.isExpanded = _covenants.isExpanded;
+          });
+        }
       }
       console.log('data', this.data);
     });
+  //   if (!!this.categories && this.categories.length > 0) {
+  //   this.menuLust = this.categories.card.card.itemCards;
+
+  //   this.categories.forEach((_covenants: any) => {
+  //     _covenants.isExpanded = _covenants.isExpanded;
+  //   });
+  // }
     // this.menuItems$.subscribe((menuList: any) => {
     //   console.log('menu list', menuList);
     //   this.menuLust = menuList;
@@ -62,7 +74,7 @@ export class RestaurantmeuComponent implements OnInit {
     // }
   }
 
-  onMenuClicked(event: Event, list: any) {
+  onMenuClicked(event: Event, list: any, isExpanded: boolean) {
     console.log(event);
     console.log(list);
     this.menuLust = list;
